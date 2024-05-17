@@ -13,12 +13,3 @@ public class InitApplication {
     }
 
 }
-
-@Controller
-class InitController {
-
-    @GetMapping("/")
-    public String init() {
-        return "index";
-    }
-}
