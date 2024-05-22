@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- InitControllerから渡されたmodelをすべて表示-->
+<table>
+    <tr>
+        <th>Table Number</th>
+        <th>Video URL</th>
+    </tr>
+    <tr th:each="request : ${requestInfoList}">
+        <td th:text="${request.tableNumber}"></td>
+        <td th:text="${request.videoUrl}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
