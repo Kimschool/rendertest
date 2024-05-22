@@ -11,7 +11,7 @@
         <th>Table Number</th>
         <th>Video URL</th>
     </tr>
-    <tr th:each="request : ${requestInfoList}">
+    <tr th:each="request : ${listInfoList}">
         <td th:text="${request.tableNumber}"></td>
         <td th:text="${request.videoUrl}"></td>
     </tr>
