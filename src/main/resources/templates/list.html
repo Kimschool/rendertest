@@ -1,21 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!-- InitControllerから渡されたmodelをすべて表示-->
-<table>
-    <tr>
-        <th>Table Number</th>
-        <th>Video URL</th>
-    </tr>
-    <tr th:each="request : ${listInfoList}">
-        <td th:text="${request.tableNumber}"></td>
-        <td th:text="${request.videoUrl}"></td>
-    </tr>
-</table>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
+    <title>Untitled</title>
+
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic">
+    <link rel="stylesheet" href="assets/css/Pretty-Search-Form-.css">
+    <link rel="stylesheet" href="assets/css/user.css">
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header"><a class="navbar-brand" href="#">ADMIN</a></div>
+        <div id="navcol-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="page-header">
+        <h3>Song List</h3>
+    </div>
+    <p>申請件数：<span th:text="${listInfoList.size}"></span>件</p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>NO</th>
+                <th>テーブル番号</th>
+                <th>URL</th>
+                <th>コピー</th>
+                <th>再生ステータス</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- listInfoListを降順に回す-->
+            <tr th:each="request : ${listInfoList}">
+                <td th:text="${request.id}"></td>
+                <td th:text="${request.tableNumber}"></td>
+                <td th:text="${request.videoUrl}"></td>
+                <td><button class="btn btn-default" type="button">コピー</button></td>
+                <td><button class="btn btn-default" type="button">再生</button></td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <section>
+        <div class="row">
+            <div class="col-lg-3 col-md-12 col-xs-5 col-xs-offset-0 text-center"><a class="btn btn-default" type="button" href="/list">リストの更新</a></div>
+            <div class="col-lg-3 col-md-12"></div>
+            <div class="col-lg-3 col-md-12"></div>
+            <div class="col-lg-3 col-md-12 text-center"><a class="btn btn-default" type="button" href="/clear" onclick="alert('リストを削除しました。')">すべての履歴削除</a></div>
+        </div>
+    </section>
+</div>
+<footer class="site-footer">
+    <div class="container">
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <h5>MOONLIGHT © 2023</h5>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
+
 </html>

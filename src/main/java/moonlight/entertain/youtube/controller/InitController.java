@@ -2,14 +2,12 @@ package moonlight.entertain.youtube.controller;
 
 import moonlight.entertain.youtube.dto.ListInfo;
 import moonlight.entertain.youtube.repo.ListInfoRepo;
-import moonlight.entertain.youtube.vo.RequestInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -54,6 +52,10 @@ public class InitController {
         // リクエスト情報を取得
         List<ListInfo> listInfoList = listInfoRepo.findAll();
 
+        // リストを降順に並び替え
+        listInfoList.sort((a, b) -> b.getId().compareTo(a.getId()));
+
+
         // リクエスト情報を画面に表示
         model.addAttribute("listInfoList", listInfoList);
 
@@ -77,6 +79,19 @@ public class InitController {
 
         // request.htmlを表示
         return "list";
+    }
+
+
+    /**
+     * リクエスト情報を削除する
+     */
+    @GetMapping("/clear")
+    public String clear() {
+
+        // リクエスト情報を削除
+        listInfoRepo.deleteAll();
+
+        return "redirect:/list";
     }
 
 
