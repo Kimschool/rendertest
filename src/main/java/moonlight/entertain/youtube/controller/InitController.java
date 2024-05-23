@@ -27,7 +27,7 @@ public class InitController {
     @GetMapping("/")
     public String index(Model model) {
         // request.htmlを表示
-        return "request";
+        return "index";
     }
 
     /**
