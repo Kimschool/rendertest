@@ -7,10 +7,10 @@
 .search-form div.input-group-addon {
   background: #fff;
   color: #80A3BD;
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
+  /*border-bottom-left-radius: 2px;*/
+  /*border-top-left-radius: 2px;*/
   border: 1px solid #b6c3cd;
-  border-right: 0;
+  /*border-right: 0;*/
 }
 
 .search-form .input-group input {
