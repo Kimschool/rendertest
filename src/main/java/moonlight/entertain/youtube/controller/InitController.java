@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -30,21 +31,22 @@ public class InitController {
 
     /**
      * リクエスト情報を登録する
-     * @param model
      * @param tableNumber
      * @param videoUrl
      * @return
      */
     @PostMapping("/request")
-    public String request(Model model, String tableNumber, String videoUrl) {
+    public String request(String tableNumber, String videoUrl) {
 
         // リクエスト情報を登録
         ListInfo listInfo = new ListInfo();
         listInfo.setTableNumber(tableNumber);
         listInfo.setVideoUrl(videoUrl);
+        listInfo.setStatus("0");
         listInfoRepo.save(listInfo);
 
-        return "redirect:/list";
+        // index画面を再表示
+        return "redirect:/";
     }
 
     @GetMapping("/list")
@@ -90,6 +92,19 @@ public class InitController {
 
         // リクエスト情報を削除
         listInfoRepo.deleteAll();
+
+        return "redirect:/list";
+    }
+
+    @PostMapping("/changeStatus")
+    public String changeStatus(Long id) {
+        // リクエスト情報を取得
+        ListInfo listInfo = listInfoRepo.findById(id).orElse(null);
+        if(listInfo.getStatus().equals("1"))
+            listInfo.setStatus("0");
+        else
+            listInfo.setStatus("1");
+        listInfoRepo.save(listInfo);
 
         return "redirect:/list";
     }

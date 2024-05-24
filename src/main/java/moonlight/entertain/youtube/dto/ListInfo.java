@@ -2,6 +2,7 @@ package moonlight.entertain.youtube.dto;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Data
@@ -17,5 +18,10 @@ public class ListInfo {
 
     // 動画URL
     private String videoUrl;
+
+    // ステータス
+    // default値："0"
+    @Column(columnDefinition = "varchar(1) default '0'")
+    private String status;
 
 }

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic">
     <link rel="stylesheet" href="assets/css/Pretty-Search-Form-.css">
     <link rel="stylesheet" href="assets/css/user.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -46,9 +47,10 @@
             <tr th:each="request : ${listInfoList}">
                 <td th:text="${request.id}"></td>
                 <td th:text="${request.tableNumber}"></td>
-                <td th:text="${request.videoUrl}"></td>
-                <td><button class="btn btn-default" type="button">コピー</button></td>
-                <td><button class="btn btn-default" type="button">再生</button></td>
+                <td th:id="${request.id}" th:text="${request.videoUrl}"></td>
+                <td><button class="btn btn-default" type="button" onclick="copyUrl(this)">コピー</button></td>
+                <td><button class="btn btn-default" type="button" onclick="changeStatus(this)"><span th:if="${request.status} == 0">再生</span><span th:if="${request.status} == 1" onclick="changeStatus(this)">再生済み</span></button></td>
+
             </tr>
 
 
@@ -74,6 +76,37 @@
         </div>
     </div>
 </footer>
+<script>
+    // URLをコピーする関数
+    function copyUrl(obj) {
+        var id = obj.parentNode.parentNode.children[2].id;
+        var url = document.getElementById(id).innerText;
+        var temp = document.createElement('textarea');
+        temp.value = url;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        alert('URLをコピーしました。');
+    }
+
+    // ajaxでInitControllerのchangStatusメソッドを呼び出す関数
+    function changeStatus(obj) {
+        var id = obj.parentNode.parentNode.children[0].innerText;
+        $.ajax({
+            type: 'POST',
+            url: '/changeStatus',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                // 現在の画面をリフレッシュする
+                location.reload();
+            }
+        });
+    }
+
+</script>
 </body>
 
 </html>
