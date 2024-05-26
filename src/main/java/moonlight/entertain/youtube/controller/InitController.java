@@ -24,8 +24,6 @@ public class InitController {
      * @param model
      * @return
      */
-    @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
-
     @GetMapping("/")
     public String index(Model model) {
         // request.htmlを表示
@@ -38,7 +36,6 @@ public class InitController {
      * @param videoUrl
      * @return
      */
-    @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
     @PostMapping("/request")
     public String request(String tableNumber, String videoUrl) {
 
@@ -53,7 +50,6 @@ public class InitController {
         return "redirect:/";
     }
 
-    @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
     @GetMapping("/list")
     public String list(Model model) {
         // リクエスト情報を取得
@@ -75,7 +71,6 @@ public class InitController {
      * @param model
      * @return
      */
-    @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
     @GetMapping("/manager")
     public String manager(Model model) {
 
@@ -93,7 +88,6 @@ public class InitController {
     /**
      * リクエスト情報を削除する
      */
-    @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
     @GetMapping("/clear")
     public String clear() {
 
@@ -102,7 +96,6 @@ public class InitController {
 
         return "redirect:/list";
     }
-    @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
     @PostMapping("/changeStatus")
     public String changeStatus(Long id) {
         // リクエスト情報を取得
