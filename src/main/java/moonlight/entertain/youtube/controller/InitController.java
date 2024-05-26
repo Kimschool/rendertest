@@ -3,6 +3,7 @@ package moonlight.entertain.youtube.controller;
 import moonlight.entertain.youtube.dto.ListInfo;
 import moonlight.entertain.youtube.repo.ListInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class InitController {
@@ -37,7 +40,7 @@ public class InitController {
      * @return
      */
     @PostMapping("/request")
-    public String request(String tableNumber, String videoUrl) {
+    public ResponseEntity<Map<String, String>>  request(String tableNumber, String videoUrl) {
 
         // リクエスト情報を登録
         ListInfo listInfo = new ListInfo();
@@ -46,8 +49,11 @@ public class InitController {
         listInfo.setStatus("0");
         listInfoRepo.save(listInfo);
 
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "/");
+
         // index画面を再表示
-        return "redirect:/";
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/list")

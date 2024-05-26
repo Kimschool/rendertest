@@ -159,6 +159,8 @@
                     //
                     alert("申請が完了しました♪ \n instagramフォローもお願いします！♪");
                     // 現在の画面を強制的に閉じる
+                    // 성공하면 반환된 URL로 리다이렉트
+                    // window.location.href = data.redirectUrl;
                     window.open('https://www.instagram.com/dalbitmaru_shinokubo/', '_self');
                 },
                 error: function (data) {
