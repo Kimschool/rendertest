@@ -102,7 +102,6 @@ public class InitController {
 
         return "redirect:/list";
     }
-
     @CrossOrigin(origins = "https://revolutionary-tamqrah-weavus-b33365e5.koyeb.app")
     @PostMapping("/changeStatus")
     public String changeStatus(Long id) {
