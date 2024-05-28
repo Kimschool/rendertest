@@ -103,18 +103,21 @@ public class InitController {
         return "redirect:/list";
     }
     @PostMapping("/changeStatus")
-    public String changeStatus(Long id) {
+    public ResponseEntity<Map<String, String>> changeStatus(Long id) {
         // リクエスト情報を取得
         ListInfo listInfo = listInfoRepo.findById(id).orElse(null);
         if(listInfo.getStatus().equals("1"))
             listInfo.setStatus("0");
         else
             listInfo.setStatus("1");
+
         listInfoRepo.save(listInfo);
 
-        return "redirect:/list";
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", "/list");
+
+        // list画面を再表示
+        return ResponseEntity.ok(response);
     }
-
-
 
 }

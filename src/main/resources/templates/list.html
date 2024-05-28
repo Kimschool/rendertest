@@ -100,8 +100,10 @@
                 id: id
             },
             success: function (data) {
-                // 現在の画面をリフレッシュする
                 location.reload();
+            },
+            error: function (data) {
+                alert("エラーが発生しました。");
             }
         });
     }
